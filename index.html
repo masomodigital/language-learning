@@ -50,11 +50,16 @@
 
     <script>
       function translateText() {
-        var text = document.getElementById('textToTranslate').value;
+        var text = document.getElementById('textToTranslate').value.trim();
         var targetLanguage = document.getElementById('languageSelect').value;
         
+        if (text === "") {
+          document.getElementById('result').innerText = "Please enter text to translate.";
+          return;
+        }
+
         // Replace with your Web App URL
-        var webAppUrl = 'https://script.google.com/macros/s/AKfycbyIEHt5jdmwdFrjYM-_NlCkNVftTrgYywXLo0vhBj6CZVDgWJXQq6Y9K2juuob8-yJJ1g/exec';
+        var webAppUrl = 'https://script.google.com/macros/s/AKfycbx5MskGPFC4t4qtVESqGc141Vxeev8KXU5NJrSu_nRF7CkJyLwFaimbUfVEAPekYE9m1A/exec';
 
         // Call the web app using fetch API
         fetch(webAppUrl + '?text=' + encodeURIComponent(text) + '&target=' + targetLanguage)
